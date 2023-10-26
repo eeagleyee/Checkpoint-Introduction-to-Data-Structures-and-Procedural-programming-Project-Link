@@ -1,0 +1,43 @@
+PROCEDURE FindDistinctSum(set1, set2: ARRAY_OF_INTEGER);
+VAR
+   sum, i, j: INTEGER;
+   isPresent: BOOLEAN;
+BEGIN
+   sum := 0;
+
+   FOR i FROM 1 TO LENGTH(set1) DO
+   BEGIN
+      isPresent := FALSE;
+
+      FOR j FROM 1 TO LENGTH(set2) DO
+      BEGIN
+         IF set1[i] = set2[j] THEN
+         BEGIN
+            isPresent := TRUE;
+            BREAK;
+         END;
+      END;
+
+      IF NOT isPresent THEN
+         sum := sum + set1[i];
+   END;
+
+   FOR i FROM 1 TO LENGTH(set2) DO
+   BEGIN
+      isPresent := FALSE;
+
+      FOR j FROM 1 TO LENGTH(set1) DO
+      BEGIN
+         IF set2[i] = set1[j] THEN
+         BEGIN
+            isPresent := TRUE;
+            BREAK;
+         END;
+      END;
+
+      IF NOT isPresent THEN
+         sum := sum + set2[i];
+   END;
+
+   Write(sum);
+END;

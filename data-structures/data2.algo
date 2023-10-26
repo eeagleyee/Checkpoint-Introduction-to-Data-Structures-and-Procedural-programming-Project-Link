@@ -1,0 +1,31 @@
+PROCEDURE DotProduct(v1, v2: ARRAY_OF_REAL; VAR ps: REAL);
+VAR
+   i: INTEGER;
+BEGIN
+   ps := 0;
+
+   FOR i FROM 1 TO LENGTH(v1) DO
+      ps := ps + (v1[i] * v2[i]);
+END;
+
+ALGORITHM DetermineOrthogonalVectors
+VAR
+   n, i, j: INTEGER;
+   v1, v2: ARRAY_OF_REAL;
+   ps: REAL;
+BEGIN
+   Read(n);
+
+   FOR i FROM 1 TO n DO
+   BEGIN
+      ReadArray(v1);
+      ReadArray(v2);
+
+      DotProduct(v1, v2, ps);
+
+      IF ps = 0 THEN
+         WriteLn('Vectors are orthogonal')
+      ELSE
+         WriteLn('Vectors are not orthogonal');
+   END;
+END;
